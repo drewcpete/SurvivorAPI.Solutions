@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Survivor.Services;
-using Survivor.Entities;
+using Survivor.Models;
+using System;
 
 namespace Survivor.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Route("[controller]")]
     public class UsersController : ControllerBase
@@ -21,8 +22,9 @@ namespace Survivor.Controllers
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]User userParam)
         {
+            Console.WriteLine(userParam.Username);
             var user = _userService.Authenticate(userParam.Username, userParam.Password);
-
+            
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 

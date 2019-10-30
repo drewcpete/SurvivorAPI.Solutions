@@ -14,6 +14,7 @@ namespace Survivor.Models
         public DbSet<Player> Players {get; set;}
         public DbSet<Season> Seasons {get; set;}
         public DbSet<Appearance> Appearances {get; set;}
+        public DbSet<User> Users {get; set;}
         
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -84,6 +85,7 @@ namespace Survivor.Models
                     
                     }
             );
+            
             builder.Entity<Appearance>().HasData(
                 new Appearance {
                     SeasonId = 4, 
@@ -91,6 +93,15 @@ namespace Survivor.Models
                     AppearanceId = 1,
                     DaysPerSeason = 11,
                     GameAge = 25
+                    }
+            );
+            builder.Entity<User>().HasData(
+                new User {
+                    Id = 1, 
+                    FirstName = "test",
+                    LastName = "test",
+                    Username = "admin",
+                    Password = "admin"
                     }
             );
         }

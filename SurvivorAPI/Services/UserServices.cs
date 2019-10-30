@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Survivor.Entities;
+using Survivor.Models;
 using Survivor.Helpers;
 
 namespace Survivor.Services
@@ -19,16 +19,16 @@ namespace Survivor.Services
 
     public class UserService : IUserService
     {
+         private SurvivorContext _db;
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users = new List<User>
-        { 
-            new User { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" } 
-        };
-
+        private List<User> _users;
+       
         private readonly AppSettings _appSettings;
 
-        public UserService(IOptions<AppSettings> appSettings)
+        public UserService(SurvivorContext db, IOptions<AppSettings> appSettings)
         {
+            _db = db;
+            _users = _db.Users.ToList();
             _appSettings = appSettings.Value;
         }
 

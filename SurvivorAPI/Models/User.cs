@@ -1,4 +1,4 @@
-namespace Survivor.Entities
+namespace Survivor.Models
 {
     public class User
     {
