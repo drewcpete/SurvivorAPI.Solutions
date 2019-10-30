@@ -1,0 +1,12 @@
+@using Survivor.Models
+
+<h1>Survivors!</h1>
+<ul>
+@foreach (Player player in Model)
+{
+    
+    <li>Name: @player.PlayerName</li>
+    <li>Name: @player.Gender</li>
+    
+}
+</ul>
