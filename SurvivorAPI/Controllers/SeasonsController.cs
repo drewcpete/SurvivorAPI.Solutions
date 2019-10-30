@@ -3,9 +3,13 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Survivor.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Survivor.Services;
+using Survivor.Entities;
 
 namespace Survivor.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class SeasonsController : ControllerBase
