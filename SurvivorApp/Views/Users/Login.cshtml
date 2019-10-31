@@ -1,0 +1,16 @@
+@model Survivor.Models.User1;
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.LabelFor(model => model.Username)
+    @Html.TextBoxFor(model => model.Username)
+    @Html.LabelFor(model => model.Password)
+    @Html.TextBoxFor(model => model.Password)
+    @Html.HiddenFor(model => model.Token)
+
+
+    
+
+    <input type="submit" value="Login" class="btn btn-default" />
+}

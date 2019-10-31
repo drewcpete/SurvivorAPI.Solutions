@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using Survivor.Services;
 using Survivor.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Survivor.Controllers
 {
@@ -12,10 +14,12 @@ namespace Survivor.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
+        private readonly SurvivorContext _db;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, SurvivorContext db)
         {
             _userService = userService;
+            _db = db;
         }
 
         [AllowAnonymous]
@@ -36,6 +40,13 @@ namespace Survivor.Controllers
         {
             var users =  _userService.GetAll();
             return Ok(users);
+        }
+        [AllowAnonymous]
+        [HttpPost("create")]
+        public IActionResult Create([FromBody]User newUser)
+        {
+            _userService.Create(newUser);
+            return Ok(newUser);
         }
     }
 }

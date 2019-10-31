@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
  namespace Survivor.Models
  {
-     public class User
+     public class User1
      {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -16,21 +16,28 @@ using Newtonsoft.Json.Linq;
         public string Token { get; set; }
         public ICollection<Player> Players {get;set;}
         public ICollection<Season> Seasons { get; set; }
-        public User()
+        public User1()
         {
             this.Players = new HashSet<Player> () ;
             this.Seasons = new HashSet<Season> () ;
         }
 
-    public static List<Player> GetPlayers()
+        public static User1 GetUsers(User1 user)
         {
-            var apiCallTask = ApiHelper.PlayerApiCall();
+            var apiCallTask = ApiHelper.AuthApiCall(user);
             var result = apiCallTask.Result;
 
-            JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
-            List<Player> playerList = JsonConvert.DeserializeObject<List<Player>>(jsonResponse.ToString());
+            JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+            User1 userList = JsonConvert.DeserializeObject<User1>(jsonResponse.ToString());
 
-            return playerList;
+            return userList;
         }
+        public static void CreateUser(User1 newUser)
+        {
+            var apiCallTask = ApiHelper.NewUserApiCall(newUser);
+            var result = apiCallTask.Result;
+
+        }
+        
      }
  }

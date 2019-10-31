@@ -8,6 +8,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Survivor.Models;
 using Survivor.Helpers;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Survivor.Services
 {
@@ -15,6 +17,7 @@ namespace Survivor.Services
     {
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
+        void Create(User user);
     }
 
     public class UserService : IUserService
@@ -67,6 +70,12 @@ namespace Survivor.Services
                 x.Password = null;
                 return x;
             });
+        }
+
+        public void Create(User newUser)
+        {
+            _db.Users.Add(newUser);
+            _db.SaveChanges();
         }
     }
 }
