@@ -40,7 +40,7 @@ namespace Survivor.Models
 
       public static async Task<string> NewPlayerApiCall(Player player)
     {
-        RestClient client = new RestClient("http://localhost:5000/api/players/addplayer");
+        RestClient client = new RestClient("http://localhost:5000/api/players/");
         RestRequest request = new RestRequest(Method.POST);
         request.AddJsonBody(player);
         var response = await client.ExecuteTaskAsync(request);

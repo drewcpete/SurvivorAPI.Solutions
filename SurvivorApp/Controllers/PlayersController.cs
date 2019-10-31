@@ -23,12 +23,12 @@ namespace Survivor.Controllers
             return View();
         }
 
-        public ActionResult SavePlayer(Player player)
+        [HttpPost]
+        public ActionResult AddPlayer(Player player)
         {
             Player.AddNewPlayer(player);
             return RedirectToAction("Index");
         }
-
 
     }
 

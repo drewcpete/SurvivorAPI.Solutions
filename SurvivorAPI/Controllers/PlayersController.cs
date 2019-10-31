@@ -37,12 +37,10 @@ namespace Survivor.Controllers
             return query.ToList();
         }
 
-
-
         
         // Post api/players
         [HttpPost]
-        public void AddPlayer([FromBody] Player player)
+        public void Post([FromBody] Player player)
         {
             _db.Players.Add(player);
             _db.SaveChanges();

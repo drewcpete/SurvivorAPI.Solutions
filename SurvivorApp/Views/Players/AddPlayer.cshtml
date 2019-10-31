@@ -1,6 +1,6 @@
 @model Survivor.Models.Player
 <h1>Add a new player:</h1>
-@using (Html.BeginForm("SavePlayer"))
+@using (Html.BeginForm())
 {
     <div class="form-group">
     @Html.HiddenFor(model => model.PlayerId)
