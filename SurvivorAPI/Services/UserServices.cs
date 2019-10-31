@@ -15,16 +15,16 @@ namespace Survivor.Services
 {
     public interface IUserService
     {
-        User Authenticate(string username, string password);
-        IEnumerable<User> GetAll();
-        void Create(User user);
+        User1 Authenticate(string username, string password);
+        IEnumerable<User1> GetAll();
+        void Create(User1 user);
     }
 
     public class UserService : IUserService
     {
          private SurvivorContext _db;
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users;
+        private List<User1> _users;
        
         private readonly AppSettings _appSettings;
 
@@ -35,7 +35,7 @@ namespace Survivor.Services
             _appSettings = appSettings.Value;
         }
 
-        public User Authenticate(string username, string password)
+        public User1 Authenticate(string username, string password)
         {
             var user = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
 
@@ -49,7 +49,7 @@ namespace Survivor.Services
             {
                 Subject = new ClaimsIdentity(new Claim[] 
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.User1Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -63,7 +63,7 @@ namespace Survivor.Services
             return user;
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User1> GetAll()
         {
             // return users without passwords
             return _users.Select(x => {
@@ -72,7 +72,7 @@ namespace Survivor.Services
             });
         }
 
-        public void Create(User newUser)
+        public void Create(User1 newUser)
         {
             _db.Users.Add(newUser);
             _db.SaveChanges();

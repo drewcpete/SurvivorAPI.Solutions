@@ -1,0 +1,16 @@
+@model Survivor.Models.Player
+<h1>Add a new player:</h1>
+@using (Html.BeginForm("SavePlayer"))
+{
+    <div class="form-group">
+    @Html.HiddenFor(model => model.PlayerId)
+    @Html.TextBoxFor(Model => Model.PlayerName, new {@class ="form-control", placeholder = "Enter player name"})
+    @Html.TextBoxFor(Model => Model.Gender, new {@class ="form-control",placeholder = "Enter player gender"})
+    @Html.TextBoxFor(Model => Model.BirthYear, new {@class ="form-control",placeholder = "Enter player birth year"})
+    @Html.TextBoxFor(Model => Model.Winner, new {@class ="form-control",placeholder = "Did they win? enter: true or false"})
+    @Html.TextBoxFor(Model => Model.SeasonsPlayed, new {@class ="form-control",placeholder = "Enter the number of the season they appeared in"})
+    </div>
+
+    <input type="submit" value="save">
+
+}

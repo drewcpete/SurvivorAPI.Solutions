@@ -21,17 +21,30 @@ namespace Survivor.Models
     }
     public static async Task<string> AuthApiCall(User1 user)
     {      
-        RestClient client = new RestClient("http://localhost:5000/api/users/authenticate");
+        RestClient client = new RestClient("http://localhost:5000/users/authenticate");
         RestRequest request = new RestRequest(Method.POST);
+        request.AddJsonBody(user);
         var response = await client.ExecuteTaskAsync(request);
         return response.Content;
     }
 
     public static async Task<string> NewUserApiCall(User1 newUser)
     {
-        RestClient client = new RestClient("http://localhost:5000/api/users/create");
+        RestClient client = new RestClient("http://localhost:5000/users/create");
         RestRequest request = new RestRequest(Method.POST);
+        request.AddJsonBody(newUser);
         var response = await client.ExecuteTaskAsync(request);
+      
+        return response.Content;
+    }
+
+      public static async Task<string> NewPlayerApiCall(Player player)
+    {
+        RestClient client = new RestClient("http://localhost:5000/api/players/addplayer");
+        RestRequest request = new RestRequest(Method.POST);
+        request.AddJsonBody(player);
+        var response = await client.ExecuteTaskAsync(request);
+      
         return response.Content;
     }
   }

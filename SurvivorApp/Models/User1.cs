@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
  {
      public class User1
      {
-        public int Id { get; set; }
+        public int User1Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
@@ -28,9 +28,9 @@ using Newtonsoft.Json.Linq;
             var result = apiCallTask.Result;
 
             JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
-            User1 userList = JsonConvert.DeserializeObject<User1>(jsonResponse.ToString());
+            User1 userLogin = JsonConvert.DeserializeObject<User1>(jsonResponse.ToString());
 
-            return userList;
+            return userLogin;
         }
         public static void CreateUser(User1 newUser)
         {

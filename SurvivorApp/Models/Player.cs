@@ -33,6 +33,12 @@ namespace Survivor.Models
 
             return playerList;
         }
+              public static void AddNewPlayer(Player player)
+        {
+            var apiCallTask = ApiHelper.NewPlayerApiCall(player);
+            var result = apiCallTask.Result;
+
+        }
 
     }
 }

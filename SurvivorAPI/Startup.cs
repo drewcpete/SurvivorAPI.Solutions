@@ -61,6 +61,8 @@ namespace Survivor
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +90,7 @@ namespace Survivor
                 .AllowAnyHeader());
 
             app.UseAuthentication();
+            app.UseSession();
 
 
             // app.UseHttpsRedirection();

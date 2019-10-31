@@ -42,7 +42,7 @@ namespace Survivor.Controllers
         
         // Post api/players
         [HttpPost]
-        public void Post([FromBody] Player player)
+        public void AddPlayer([FromBody] Player player)
         {
             _db.Players.Add(player);
             _db.SaveChanges();

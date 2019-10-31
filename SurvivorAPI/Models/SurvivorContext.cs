@@ -14,7 +14,7 @@ namespace Survivor.Models
         public DbSet<Player> Players {get; set;}
         public DbSet<Season> Seasons {get; set;}
         public DbSet<Appearance> Appearances {get; set;}
-        public DbSet<User> Users {get; set;}
+        public DbSet<User1> Users {get; set;}
         
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -95,15 +95,15 @@ namespace Survivor.Models
                     GameAge = 25
                     }
             );
-            builder.Entity<User>().HasData(
-                new User {
-                    Id = 1, 
-                    FirstName = "test",
-                    LastName = "test",
-                    Username = "admin",
-                    Password = "admin"
-                    }
-            );
+            // builder.Entity<User1>().HasData(
+            //     new User1 {
+            //         User1Id = 1, 
+            //         FirstName = "test",
+            //         LastName = "test",
+            //         Username = "admin",
+            //         Password = "admin"
+            //         }
+            // );
         }
     }
 }

@@ -24,9 +24,8 @@ namespace Survivor.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]User userParam)
+        public IActionResult Authenticate([FromBody]User1 userParam)
         {
-            Console.WriteLine(userParam.Username);
             var user = _userService.Authenticate(userParam.Username, userParam.Password);
             
             if (user == null)
@@ -43,7 +42,7 @@ namespace Survivor.Controllers
         }
         [AllowAnonymous]
         [HttpPost("create")]
-        public IActionResult Create([FromBody]User newUser)
+        public IActionResult Create([FromBody]User1 newUser)
         {
             _userService.Create(newUser);
             return Ok(newUser);
